@@ -14,11 +14,17 @@ export const counterSlice = createSlice({
       state.todos.push(request.payload);
     
     },
+
+    deleteTodo:(state,request)=>{
+
+      state.todos.splice(request.payload)
+
+    }
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {addTodo } = counterSlice.actions
+export const {addTodo,deleteTodo } = counterSlice.actions
 
 export default counterSlice.reducer

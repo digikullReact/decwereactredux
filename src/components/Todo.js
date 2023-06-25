@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Input } from 'antd';
 import { Col, Row } from 'antd';
 import { Button, Space } from 'antd';
-import { addTodo } from '../slices/counterSlice';
+import { addTodo,deleteTodo } from '../slices/counterSlice';
 import { useDispatch,useSelector } from 'react-redux';
 import { Avatar, List } from 'antd';
 
@@ -25,6 +25,9 @@ const addTodoHandler=()=>{
 
 const handleChange=(event)=>{
   setInput(event.target.value);
+}
+const handleDeleteAction=(index)=>{
+ dispatch( deleteTodo(index))
 }
 
   return (
@@ -52,6 +55,7 @@ const handleChange=(event)=>{
           title={<a href="https://ant.design">{item}</a>}
           description="Ant Design, a design language for background applications, is refined by Ant UED Team"
         />
+        <Button type="primary" onClick={()=>handleDeleteAction(index)}>Delete</Button>
       </List.Item>
     )}
   />
