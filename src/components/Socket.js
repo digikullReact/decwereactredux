@@ -3,9 +3,11 @@ import { io } from "socket.io-client";
 
 
 
+
 const Socket = () => {
     const [state,setState]=useState("");
     const [socket,setSocket]=useState();
+    const [messgaes,setMessages]=useState([]);
 
 
 
@@ -26,6 +28,8 @@ const Socket = () => {
       setSocket(obj);
       obj.on("serversent",(res)=>{
         console.log(res);
+        setMessages(prevMessages=>[...prevMessages,res]);
+       // console.log(res);
       })
 
 
@@ -39,6 +43,12 @@ const Socket = () => {
         <button onClick={sendMessage}>
             Send Message
         </button>
+
+        {
+            messgaes.map((ele)=>(
+                <li>{ele}</li>
+            ))
+        }
     </div>
   )
 }
